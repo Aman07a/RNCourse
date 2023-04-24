@@ -26,6 +26,7 @@ function GoalInput(props) {
         <Image
           style={styles.image}
           source={require("../assets/images/goal.png")}
+          // source="/some/path/to/image.png"
         />
         <TextInput
           style={styles.textInput}
