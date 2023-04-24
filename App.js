@@ -7,6 +7,7 @@ export default function App() {
       <Text>Hello World!</Text>
       <Text>Finished Sections:</Text>
       <Text>Section 2: React Native Basics</Text>
+      <Text>Section 3: Debugging React Native Apps</Text>
       <StatusBar style="auto" />
     </View>
   );
