@@ -20,13 +20,15 @@ function GoalInput(props) {
     setEnteredGoalText("");
   }
 
+  // console.log(enteredGoalText);
+  // console.log("GoalInput component rendered.");
+
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <Image
           style={styles.image}
           source={require("../assets/images/goal.png")}
-          // source="/some/path/to/image.png"
         />
         <TextInput
           style={styles.textInput}
