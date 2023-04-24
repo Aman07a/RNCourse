@@ -20,8 +20,7 @@ function GoalInput(props) {
     setEnteredGoalText("");
   }
 
-  // console.log(enteredGoalText);
-  // console.log("GoalInput component rendered.");
+  console.log("GoalInput");
 
   return (
     <Modal visible={props.visible} animationType="slide">

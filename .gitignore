@@ -347,4 +347,7 @@ google-services.json
 # Temporary files created by Metro to check the health of the file watcher
 .metro-health-check*
 
+# ProgramData of Expo
+%ProgramData%/**
+
 # End of https://www.toptal.com/developers/gitignore/api/node,reactnative
