@@ -8,6 +8,7 @@ export default function App() {
       <Text>Finished Sections:</Text>
       <Text>Section 2: React Native Basics</Text>
       <Text>Section 3: Debugging React Native Apps</Text>
+      <Text>Section 4: Diving Deeper into Components, Layouts & Styling</Text>
       <StatusBar style="auto" />
     </View>
   );
