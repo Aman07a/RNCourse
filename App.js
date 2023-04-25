@@ -2,7 +2,7 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, LogBox, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import Colors from "./constants/colors";
@@ -55,6 +55,8 @@ export default function App() {
       />
     );
   }
+
+  LogBox.ignoreAllLogs();
 
   return (
     <LinearGradient
