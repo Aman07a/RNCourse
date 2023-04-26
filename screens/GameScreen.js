@@ -46,7 +46,7 @@ function GameScreen({ userNumber, onGameOver }) {
   }, []);
 
   function nextGuessHandler(direction) {
-    // direction => 'lower', 'greater'
+    // (direction) => "lower", "greater";
     if (
       (direction === "lower" && currentGuess < userNumber) ||
       (direction === "greater" && currentGuess > userNumber)
