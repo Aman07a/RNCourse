@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import List from "../components/MealDetail/List";
 import Subtitle from "../components/MealDetail/Subtitle";
