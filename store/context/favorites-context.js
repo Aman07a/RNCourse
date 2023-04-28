@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 
-const FavoritesContext = createContext({
-  id: [],
+export const FavoritesContext = createContext({
+  ids: [],
   addFavorite: (id) => {},
   removeFavorite: (id) => {},
 });
@@ -20,7 +20,7 @@ function FavoritesContextProvider({ children }) {
   }
 
   const value = {
-    id: favoriteMealIds,
+    ids: favoriteMealIds,
     addFavorite: addFavorite,
     removeFavorite: removeFavorite,
   };
