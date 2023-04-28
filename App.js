@@ -1,63 +1,87 @@
-import React, { useState } from "react";
-import { Dimensions, StyleSheet, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import { Button, StyleSheet } from "react-native";
 
-import Block from "./components/Block";
-import Title from "./components/Title";
+import CategoriesScreen from "./screens/CategoriesScreen";
+import FavoritesScreen from "./screens/FavoritesScreen";
+import MealDetailScreen from "./screens/MealDetailScreen";
+import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 
-const App = () => {
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
   return (
-    <View style={styles.container}>
-      <View style={styles.blockContainer}>
-        <View style={styles.titleContainer}>
-          <Title>Finished Sections</Title>
-        </View>
-        <View style={styles.row}>
-          <Block>Section 1: Getting Started</Block>
-          <Block>Section 2: React Native Basics</Block>
-        </View>
-        <View style={styles.row}>
-          <Block>Section 3: Debugging React Native Apps</Block>
-          <Block>
-            Section 4: Diving Deeper into Components, Layouts & Styling
-          </Block>
-        </View>
-        <View style={styles.row}>
-          <Block>
-            Section 5: Building Adaptive User Interfaces (Adapt to Platform &
-            Device Sizes)
-          </Block>
-        </View>
-      </View>
-    </View>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#351401" },
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: "#3f2f25" },
+        drawerContentStyle: { backgroundColor: "#351401" },
+        drawerInactiveTintColor: "white",
+        drawerActiveTintColor: "#351401",
+        drawerActiveBackgroundColor: "#e4baa1",
+      }}
+    >
+      <Drawer.Screen
+        name="Categories"
+        component={CategoriesScreen}
+        options={{
+          title: "All Categories",
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="list" color={color} size={size} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          drawerIcon: ({ color, size }) => (
+            <Ionicons name="star" color={color} size={size} />
+          ),
+        }}
+      />
+    </Drawer.Navigator>
   );
-};
+}
 
-export default App;
-
-const deviceWidth = Dimensions.get("window").width;
+export default function App() {
+  return (
+    <>
+      <StatusBar style="light" />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#351401" },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: "#3f2f25" },
+          }}
+        >
+          <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+            options={{
+              title: "About the Meal",
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    marginHorizontal: 20,
-  },
-  blockContainer: {
-    flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    marginTop: 20,
-  },
-  titleContainer: {
-    marginBottom: 10,
-    padding: deviceWidth < 380 ? 12 : 12,
-    margin: deviceWidth < 380 ? 12 : 24,
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  container: {},
 });
