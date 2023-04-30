@@ -20,8 +20,8 @@ const styles = StyleSheet.create({
   buttonContainer: {
     borderRadius: 24,
     padding: 6,
-    marginVertical: 8,
-    marginHorizontal: 2,
+    marginHorizontal: 8,
+    marginVertical: 2,
   },
   pressed: {
     opacity: 0.75,
