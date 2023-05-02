@@ -60,8 +60,6 @@ function ExpensesOverview() {
   );
 }
 
-// Setting up Firebase Database
-
 export default function App() {
   return (
     <>
