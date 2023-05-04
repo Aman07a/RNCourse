@@ -3,8 +3,7 @@ import {
   launchCameraAsync,
   useCameraPermissions,
 } from "expo-image-picker";
-import { Alert } from "react-native";
-import { Button, View } from "react-native";
+import { Alert, Button, View } from "react-native";
 
 function ImagePicker() {
   const [cameraPermissionInformation, requestPermission] =
