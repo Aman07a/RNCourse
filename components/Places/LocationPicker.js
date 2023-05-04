@@ -4,7 +4,7 @@ import {
   useForegroundPermissions,
 } from "expo-location";
 import { useRef, useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
 
 import { Colors } from "../../constants/colors";
@@ -55,7 +55,7 @@ function LocationPicker() {
         longitudeDelta: 0.01,
       };
       setRegion(newRegion);
-      // console.log(newRegion);
+      console.log(newRegion);
 
       if (mapRef.current) {
         mapRef.current.animateToRegion(newRegion, 500);
@@ -66,8 +66,14 @@ function LocationPicker() {
   function pickOnMapHandler() {}
 
   return (
-    <View>
-      <MapView style={styles.mapPreview} region={region} ref={mapRef} />
+    <View style={styles.map}>
+      {region ? (
+        <MapView style={styles.mapPreview} region={region} ref={mapRef} />
+      ) : (
+        <View style={styles.mapPreview}>
+          <Text>No location picked yet.</Text>
+        </View>
+      )}
       <View style={styles.actions}>
         <OutlinedButton icon="location" onPress={getLocationHandler}>
           Locate User
@@ -83,6 +89,11 @@ function LocationPicker() {
 export default LocationPicker;
 
 const styles = StyleSheet.create({
+  map: {
+    height: 270,
+    marginVertical: 8,
+    borderRadius: 4,
+  },
   mapPreview: {
     width: "100%",
     height: 200,
@@ -91,6 +102,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.primary100,
     borderRadius: 4,
+    overflow: "hidden",
   },
   actions: {
     flexDirection: "row",
