@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   PermissionStatus,
   getCurrentPositionAsync,
@@ -13,6 +14,8 @@ import OutlinedButton from "../UI/OutlinedButton";
 function LocationPicker() {
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  const navigation = useNavigation();
 
   const [region, setRegion] = useState(null);
   const mapRef = useRef(null);
@@ -55,7 +58,7 @@ function LocationPicker() {
         longitudeDelta: 0.01,
       };
       setRegion(newRegion);
-      console.log(newRegion);
+      // console.log(newRegion);
 
       if (mapRef.current) {
         mapRef.current.animateToRegion(newRegion, 500);
@@ -63,7 +66,9 @@ function LocationPicker() {
     }
   }
 
-  function pickOnMapHandler() {}
+  function pickOnMapHandler() {
+    navigation.navigate("Map");
+  }
 
   return (
     <View style={styles.map}>
