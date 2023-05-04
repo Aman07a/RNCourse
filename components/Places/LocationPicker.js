@@ -4,13 +4,16 @@ import {
   useForegroundPermissions,
 } from "expo-location";
 import { Alert, StyleSheet, View } from "react-native";
-
+import MapView, { Marker } from "react-native-maps";
 import { Colors } from "../../constants/colors";
 import OutlinedButton from "../UI/OutlinedButton";
+import { useState } from "react";
 
 function LocationPicker() {
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  const [region, setRegion] = useState(null);
 
   async function verifyPermissions() {
     if (
@@ -40,7 +43,17 @@ function LocationPicker() {
     }
 
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    const { latitude, longitude } = location.coords;
+
+    // Set the region of the map to the user's location
+    setRegion({
+      latitude,
+      longitude,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    });
+
+    console.log(region);
   }
 
   function pickOnMapHandler() {}
@@ -71,6 +84,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.primary100,
     borderRadius: 4,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
   actions: {
     flexDirection: "row",
