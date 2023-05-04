@@ -3,13 +3,19 @@ import {
   getCurrentPositionAsync,
   useForegroundPermissions,
 } from "expo-location";
+import { useRef, useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
+import MapView from "react-native-maps";
+
 import { Colors } from "../../constants/colors";
 import OutlinedButton from "../UI/OutlinedButton";
 
 function LocationPicker() {
   const [locationPermissionInformation, requestPermission] =
     useForegroundPermissions();
+
+  const [region, setRegion] = useState(null);
+  const mapRef = useRef(null);
 
   async function verifyPermissions() {
     if (
@@ -39,14 +45,29 @@ function LocationPicker() {
     }
 
     const location = await getCurrentPositionAsync();
-    console.log(location);
+    const { latitude, longitude } = location.coords;
+
+    if (latitude != null && longitude != null) {
+      const newRegion = {
+        latitude,
+        longitude,
+        latitudeDelta: 0.01,
+        longitudeDelta: 0.01,
+      };
+      setRegion(newRegion);
+      // console.log(newRegion);
+
+      if (mapRef.current) {
+        mapRef.current.animateToRegion(newRegion, 500);
+      }
+    }
   }
 
   function pickOnMapHandler() {}
 
   return (
     <View>
-      <View style={styles.mapPreview}></View>
+      <MapView style={styles.mapPreview} region={region} ref={mapRef} />
       <View style={styles.actions}>
         <OutlinedButton icon="location" onPress={getLocationHandler}>
           Locate User
