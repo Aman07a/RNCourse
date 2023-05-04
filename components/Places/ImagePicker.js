@@ -39,13 +39,23 @@ function ImagePicker() {
       return;
     }
 
-    const image = await launchCameraAsync({
+    const { assets } = await launchCameraAsync({
       allowsEditing: true,
       aspect: [16, 9],
       quality: 0.5,
     });
 
-    setPickedImage(image.uri);
+    if (assets && assets.length > 0) {
+      setPickedImage(assets[0].uri);
+    }
+
+    // const image = await launchCameraAsync({
+    //   allowsEditing: true,
+    //   aspect: [16, 9],
+    //   quality: 0.5,
+    // });
+
+    // setPickedImage(image.uri);
   }
 
   let imagePreview = <Text>No image taken yet.</Text>;
