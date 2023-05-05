@@ -91,7 +91,6 @@ function LocationPicker() {
   );
 }
 
-// Previewing Picked Locations Test
 
 export default LocationPicker;
 
